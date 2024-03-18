@@ -52,6 +52,13 @@
     #level{
         width: 37%;
     }
+   .skills-and-throws{
+        border: solid black;
+        position: relative;
+        padding-bottom: 3%;
+        top: 3%;
+        margin-bottom: 5%;
+    }
     .input-spacer{
         position: relative;
         margin-top: 5%;
@@ -118,7 +125,21 @@
     .identity-labels{
         position: relative;
         left: 30%;
-    
+    }
+    .throw-spacing{
+        position: relative;
+        padding-top: 3%;
+    }
+    .skill-input{
+        width: 9%;
+        height: 75%;
+    }
+    .skill-label{
+        padding-left: 2%;
+        font-size: 0.7rem;
+    }
+    .skills-throws-radio{
+        transform: scale(0.7);
     }
     #abilities{
         display: flex;
@@ -130,7 +151,7 @@
     #inspiration{
         display:flex;
         flex-direction: row;
-        margin-top: 5%;
+        margin-top: 1%;
         padding-bottom: 3%;
         margin-left: 2%;
     }
@@ -142,6 +163,12 @@
         border-left: none;
         margin-top: 1%;
         padding: 2% 12%;
+    }
+    .skills-throws-label{
+        position: relative;
+        align-content: center;
+        font-size: 0.7rem;
+        font-weight: bold;
     }
 </style>
 
@@ -242,6 +269,137 @@
             <div id = "profBonus">
                 <input type="text" id="prof-bonus" readonly></input>
                 <label id="proficiency-label">Proficiency Bonus</label>
+            </div>
+            <div id="saving-throws" class="columns skills-and-throws">
+                <div id="strength-save" class="rows throw-spacing">
+                    <input type="radio" id = "strength-button" class="skills-throws-radio">
+                    <input type="text" id="strength-save-input" class="skill-input"></input>
+                    <label for="strength-save-input" class="skill-label">Strength</label>
+                </div>
+                <div id="dex-save" class="rows throw-spacing">
+                    <input type="radio" id = "dex-button" class="skills-throws-radio">
+                    <input type="text" id="dex-save-input" class="skill-input"></input>
+                    <label for="dex-save-input" class="skill-label">Dexterity</label>
+                </div>
+                <div id="constitution-save" class="rows throw-spacing">
+                    <input type="radio" id = "constitution-button" class="skills-throws-radio">
+                    <input type="text" id="constitution-save-input" class="skill-input"></input>
+                    <label for="constitution-save-input" class="skill-label">Constitution</label>
+                </div>
+                <div id="intelligence-save" class="rows throw-spacing">
+                    <input type="radio" id = "intelligence-button" class="skills-throws-radio">
+                    <input type="text" id="intelligence-save-input" class="skill-input"></input>
+                    <label for="intelligence-save-input" class="skill-label">Intelligence</label>
+                </div>
+                <div id="wisdom-save" class="rows throw-spacing">
+                    <input type="radio" id = "wisdom-button" class="skills-throws-radio">
+                    <input type="text" id="wisdom-save-input" class="skill-input"></input>
+                    <label for="wisdom-save-input" class="skill-label">Wisdom</label>
+                </div>
+                <div id="charisma-save" class="rows throw-spacing">
+                    <input type="radio" id = "charisma-button" class="skills-throws-radio">
+                    <input type="text" id="charisma-save-input" class="skill-input"></input>
+                    <label for="charisma-save-input" class="skill-label">Charisma</label>
+                </div>
+                <label class="skills-throws-label">Saving Throws</label>
+            </div>
+            <div id="skill-list" class="columns skills-and-throws">
+                <div id="acrobatics-box" class="rows throw-spacing">
+                    <input type="radio" id = "acrobatics-skill" class="skills-throws-radio">
+                    <input type="text" id="acrobatics-input" class="skill-input"></input>
+                    <label for="acrobatics-input" class="skill-label">Acrobatics</label>
+                </div>
+                <div id="ah-box" class="rows throw-spacing">
+                    <input type="radio" id = "ah-skill" class="skills-throws-radio">
+                    <input type="text" id="ah-input" class="skill-input"></input>
+                    <label for="ah-input" class="skill-label">Animal Handling</label>
+                </div>
+                <div id="arcana-box" class="rows throw-spacing">
+                    <input type="radio" id = "arcana-skill" class="skills-throws-radio">
+                    <input type="text" id="arcana-input" class="skill-input"></input>
+                    <label for="arcana-input" class="skill-label">Arcana</label>
+                </div>
+                <div id="arcana-box" class="rows throw-spacing">
+                    <input type="radio" id = "athletics-skill" class="skills-throws-radio">
+                    <input type="text" id="athletics-input" class="skill-input"></input>
+                    <label for="athletics-input" class="skill-label">Athletics</label>
+                </div>
+                <div id="arcana-box" class="rows throw-spacing">
+                    <input type="radio" id = "deception-skill" class="skills-throws-radio">
+                    <input type="text" id="deception-input" class="skill-input"></input>
+                    <label for="deception-input" class="skill-label">Deception</label>
+                </div>
+                <div id="history-box" class="rows throw-spacing">
+                    <input type="radio" id = "history-skill" class="skills-throws-radio">
+                    <input type="text" id="history-input" class="skill-input"></input>
+                    <label for="history-input" class="skill-label">History</label>
+                </div>
+                <div id="insight-box" class="rows throw-spacing">
+                    <input type="radio" id = "insight-skill" class="skills-throws-radio">
+                    <input type="text" id="insight-input" class="skill-input"></input>
+                    <label for="insight-input" class="skill-label">Insight</label>
+                </div>
+                <div id="intimidation-box" class="rows throw-spacing">
+                    <input type="radio" id = "intimidation-skill" class="skills-throws-radio">
+                    <input type="text" id="intimidation-input" class="skill-input"></input>
+                    <label for="intimidation-input" class="skill-label">Intimidation</label>
+                </div>
+                <div id="intimidation-box" class="rows throw-spacing">
+                    <input type="radio" id = "investigation-skill" class="skills-throws-radio">
+                    <input type="text" id="investigation-input" class="skill-input"></input>
+                    <label for="investigation-input" class="skill-label">Investigation</label>
+                </div>
+                <div id="intimidation-box" class="rows throw-spacing">
+                    <input type="radio" id = "medicine-skill" class="skills-throws-radio">
+                    <input type="text" id="medicine-input" class="skill-input"></input>
+                    <label for="medicine-input" class="skill-label">Medicine</label>
+                </div>
+                <div id="nature-box" class="rows throw-spacing">
+                    <input type="radio" id = "nature-skill" class="skills-throws-radio">
+                    <input type="text" id="nature-input" class="skill-input"></input>
+                    <label for="nature-input" class="skill-label">Nature</label>
+                </div>
+                <div id="perception-box" class="rows throw-spacing">
+                    <input type="radio" id = "perception-skill" class="skills-throws-radio">
+                    <input type="text" id="perception-input" class="skill-input"></input>
+                    <label for="nature-input" class="skill-label">Perception</label>
+                </div>
+                <div id="performance-box" class="rows throw-spacing">
+                    <input type="radio" id = "performance-skill" class="skills-throws-radio">
+                    <input type="text" id="performance-input" class="skill-input"></input>
+                    <label for="performance-input" class="skill-label">Performance</label>
+                </div>
+                <div id="performance-box" class="rows throw-spacing">
+                    <input type="radio" id = "performance-skill" class="skills-throws-radio">
+                    <input type="text" id="performance-input" class="skill-input"></input>
+                    <label for="performance-input" class="skill-label">Performance</label>
+                </div>
+                <div id="persuasion-box" class="rows throw-spacing">
+                    <input type="radio" id = "persuasion-skill" class="skills-throws-radio">
+                    <input type="text" id="persuasion-input" class="skill-input"></input>
+                    <label for="persuasion-input" class="skill-label">Persuasion</label>
+                </div>
+                <div id="religion-box" class="rows throw-spacing">
+                    <input type="radio" id = "religion-skill" class="skills-throws-radio">
+                    <input type="text" id="religion-input" class="skill-input"></input>
+                    <label for="religion-input" class="skill-label">Religion</label>
+                </div>
+                <div id="soh-box" class="rows throw-spacing">
+                    <input type="radio" id = "soh-skill" class="skills-throws-radio">
+                    <input type="text" id="soh-input" class="skill-input"></input>
+                    <label for="soh-input" class="skill-label">Sleight of Hand</label>
+                </div>
+                <div id="stealth-box" class="rows throw-spacing">
+                    <input type="radio" id = "stealth-skill" class="skills-throws-radio">
+                    <input type="text" id="soh-input" class="skill-input"></input>
+                    <label for="stealth-input" class="skill-label">Sleight of Hand</label>
+                </div>
+                <div id="survival-box" class="rows throw-spacing">
+                    <input type="radio" id = "survival-skill" class="skills-throws-radio">
+                    <input type="text" id="survival-input" class="skill-input"></input>
+                    <label for="survival-input" class="skill-label">Survival</label>
+                </div>
+                <label class="skills-throws-label">Skills</label>
             </div>
         </div>
     </div>

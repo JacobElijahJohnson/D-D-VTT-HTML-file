@@ -52,6 +52,13 @@
     #level{
         width: 37%;
     }
+    #ac-and-speed{
+        border: solid black;
+        margin: 0;
+        box-sizing: border-box; 
+        width: 25%;
+        margin-right: 2%;
+    }
    .skills-and-throws{
         border: solid black;
         position: relative;
@@ -73,6 +80,7 @@
     .rows{
         display: flex;
         flex-direction: row;
+        padding: 0;
     }
     .columns{
         display: flex;
@@ -91,7 +99,7 @@
     }
     .stat{
         display: inline-grid;
-        margin-top: 5%;
+        margin-top: 15%;
         margin-bottom: 5%;
         position:relative;
         box-sizing: border-box; 
@@ -158,11 +166,54 @@
     #inspired{
         transform: scale(3);
     }
+    #hit-points{
+        border: solid black;
+        top: 2%;
+        position: relative;
+    }
     #inspiration-label{
         border: solid black;
         border-left: none;
         margin-top: 1%;
         padding: 2% 12%;
+    }
+    #ais-container{
+        border: solid black;
+        box-sizing: border-box; 
+    }
+    #hp-input{
+        width: 50%;
+        text-align: center;
+        margin-left: 1%;
+    }
+    #current-points{
+        margin: auto;
+    }
+    #personality{
+        border: black solid;
+        width: 120%;
+        height: 12%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-bottom: 5%;
+    }
+    #current-hp{
+        text-align: center;
+        margin-top: 5%;
+        font-size: 3rem;
+        width: 75%;
+        margin-left: 13%;
+        margin-bottom: 3%;
+    }
+    #current-hp-label{
+        margin-left: 25%;
+        font-weight: bold;
+    }
+    #personality-text{
+        margin-top: 1%;
+        top: 3%;
+        height: 85%;
+        text-align: start;
     }
     .skills-throws-label{
         position: relative;
@@ -170,12 +221,30 @@
         font-size: 0.7rem;
         font-weight: bold;
     }
+    .ais-spacing{
+        width: 100%;
+        margin: 0;
+        font-size: 1.5rem;
+        text-align: center;
+        height: 100%;
+        margin-bottom: 20%
+    }
+    .ais-divs{
+        margin-right: 3%;
+        position: relative;
+        width: 25%;
+        padding-bottom: 5%;
+    }
 </style>
 
 <body>
+    <div id="save-and-load" class="rows">
+        <input type="button" id="save" value="Save">
+        <input type="button" id="load" value="Load">
+    </div>
     <div id="basic-facts">
         <div id="character-name">
-            <input type="text" id="name-field"></input>
+            <input type="text" id="name-field">
             <label id="name-label" for="name-field">Character Name</label>
         </div>
         <div id="character-information">
@@ -199,30 +268,30 @@
                     <label for="class" id = "class-label">Class</label>
                 </div>
                 <div class="columns">
-                    <input type="text" class="input-spacer" id="subclass"></input>
+                    <input type="text" class="input-spacer" id="subclass">
                     <label for="subclass" class = "identity-labels">Subclass</label>
                 </div>
                 <div class="columns">
-                    <input type = "text" class="input-spacer" id="background"></input>
+                    <input type = "text" class="input-spacer" id="background">
                     <label for = "background" class = "identity-labels">Background</label>
                 </div>
                 <div class="columns">
-                    <input type = "text" class="input-spacer" id="level"></input>
+                    <input type = "text" class="input-spacer" id="level">
                     <label for = "level" class = "identity-labels">Level</label> 
                 </div>
             </div>
             <div class="rows" id="bottom-row">
                 <div class="columns">
-                    <input type = "text" id="race"></input>
+                    <input type = "text" id="race">
                     <label for = "background">Race</label>
                 </div>
                 <div class="columns">
-                    <input type = "text" class="bottom-spacer" id="allignment"></input>
+                    <input type = "text" class="bottom-spacer" id="allignment">
                     <label for = "alignment" class = "identity-labels">Alignment</label>
                 </div>
                 <div class = "columns">
-                    <input type = "text" class="bottom-spacer" id="Experience"></input>
-                    <label for = "alignment" class = "identity-labels">Alignment</label>
+                    <input type = "text" class="bottom-spacer" id="experience">
+                    <label for = "alignment" class = "identity-labels">Experience</label>
                 </div>
             </div>
         </div>
@@ -232,186 +301,245 @@
         <div class ="abilities">
             <div class = "stat">
                 <label for="strength-asi" class="identifier">Strength</label>
-                <input type="text" class="asi" name="strength-asi" readonly ></input>
-                <input type=text class="score"></input>
+                <input type="text" class="asi strength" name="strength-asi" id="str-asi" readonly>
+                <input type="text" class="score" id="strength-score">
             </div>
             <div class = "stat">
                 <label for="dexterity-asi" class="identifier">Dexterity</label>
-                <input type="text" class="asi" name="dexterity-asi" readonly></input>
-                <input type=text class="score"></input>
+                <input type="text" class="asi dexterity" name="dexterity-asi" id="dex-asi" readonly>
+                <input type="text" class="score" id="dex-score">
             </div>
             <div class = "stat">
-                <label for="Constitution-asi" class="identifier">Constitution</label>
-                <input type="text" class="asi" name="Constitution-asi" readonly></input>
-                <input type=text class="score"></input>
+                <label for="constitution-asi" class="identifier">Constitution</label>
+                <input type="text" class="asi constitution" name="constitution-asi" id="con-asi" readonly>
+                <input type="text" class="score" id="con-score">
             </div>
             <div class = "stat">
-                <label for="Intelligence-asi" class="identifier">Intelligence</label>
-                <input type="text" class="asi" name="Intelligence-asi" readonly></input>
-                <input type=text class="score"></input>
+                <label for="intelligence-asi" class="identifier">Intelligence</label>
+                <input type="text" class="asi intelligence" name="intelligence-asi" id="int-asi" readonly>
+                <input type="text" class="score" id="int-score">
             </div>
             <div class = "stat">
-                <label for="Wisdom-asi" class="identifier">Wisdom</label>
-                <input type="text" class="asi" name="Wisdom-asi" readonly></input>
-                <input type=text class="score"></input>
+                <label for="wisdom-asi" class="identifier">Wisdom</label>
+                <input type="text" class="asi wisdom" name="wisdom-asi" id="wis-asi" readonly>
+                <input type="text" class="score" id="wis-score">
             </div>
             <div class = "stat">
-                <label for="Charisma-asi" class="identifier">Charisma</label>
-                <input type="text" class="asi" name="Charisma-asi" readonly></input>
-                <input type=text class="score"></input>
+                <label for="charisma-asi" class="identifier">Charisma</label>
+                <input type="text" class="asi charisma" name="charisma-asi" id="cha-asi" readonly>
+                <input type="text" class="score" id="cha-score">
             </div>
         </div>
         <div id = "abilities">
             <div id = "inspiration">
-                <input type="radio" id="inspired"></input>
+                <input type="radio" id="inspired">
                 <label id="inspiration-label">Inspiration</label>
             </div>
             <div id = "profBonus">
-                <input type="text" id="prof-bonus" readonly></input>
+                <input type="text" id="prof-bonus" readonly>
                 <label id="proficiency-label">Proficiency Bonus</label>
             </div>
             <div id="saving-throws" class="columns skills-and-throws">
                 <div id="strength-save" class="rows throw-spacing">
                     <input type="radio" id = "strength-button" class="skills-throws-radio">
-                    <input type="text" id="strength-save-input" class="skill-input"></input>
+                    <input type="text" id="strength-save-input" class="skill-input strength">
                     <label for="strength-save-input" class="skill-label">Strength</label>
                 </div>
                 <div id="dex-save" class="rows throw-spacing">
                     <input type="radio" id = "dex-button" class="skills-throws-radio">
-                    <input type="text" id="dex-save-input" class="skill-input"></input>
+                    <input type="text" id="dex-save-input" class="skill-input dexterity">
                     <label for="dex-save-input" class="skill-label">Dexterity</label>
                 </div>
                 <div id="constitution-save" class="rows throw-spacing">
                     <input type="radio" id = "constitution-button" class="skills-throws-radio">
-                    <input type="text" id="constitution-save-input" class="skill-input"></input>
-                    <label for="constitution-save-input" class="skill-label">Constitution</label>
+                    <input type="text" id="con-save-input" class="skill-input constitution">
+                    <label for="con-save-input" class="skill-label">Constitution</label>
                 </div>
                 <div id="intelligence-save" class="rows throw-spacing">
                     <input type="radio" id = "intelligence-button" class="skills-throws-radio">
-                    <input type="text" id="intelligence-save-input" class="skill-input"></input>
-                    <label for="intelligence-save-input" class="skill-label">Intelligence</label>
+                    <input type="text" id="int-save-input" class="skill-input intelligence">
+                    <label for="int-save-input" class="skill-label">Intelligence</label>
                 </div>
                 <div id="wisdom-save" class="rows throw-spacing">
                     <input type="radio" id = "wisdom-button" class="skills-throws-radio">
-                    <input type="text" id="wisdom-save-input" class="skill-input"></input>
-                    <label for="wisdom-save-input" class="skill-label">Wisdom</label>
+                    <input type="text" id="wis-save-input" class="skill-input wisdom">
+                    <label for="wis-save-input" class="skill-label">Wisdom</label>
                 </div>
                 <div id="charisma-save" class="rows throw-spacing">
                     <input type="radio" id = "charisma-button" class="skills-throws-radio">
-                    <input type="text" id="charisma-save-input" class="skill-input"></input>
-                    <label for="charisma-save-input" class="skill-label">Charisma</label>
+                    <input type="text" id="cha-save-input" class="skill-input charisma">
+                    <label for="cha-save-input" class="skill-label">Charisma</label>
                 </div>
                 <label class="skills-throws-label">Saving Throws</label>
             </div>
             <div id="skill-list" class="columns skills-and-throws">
                 <div id="acrobatics-box" class="rows throw-spacing">
                     <input type="radio" id = "acrobatics-skill" class="skills-throws-radio">
-                    <input type="text" id="acrobatics-input" class="skill-input"></input>
-                    <label for="acrobatics-input" class="skill-label">Acrobatics</label>
+                    <input type="text" id="acrobatics-input" class="skill-input dexterity">
+                    <label for="acrobatics-input" class="skill-label">Acrobatics (Dex)</label>
                 </div>
                 <div id="ah-box" class="rows throw-spacing">
                     <input type="radio" id = "ah-skill" class="skills-throws-radio">
-                    <input type="text" id="ah-input" class="skill-input"></input>
-                    <label for="ah-input" class="skill-label">Animal Handling</label>
+                    <input type="text" id="ah-input" class="skill-input wisdom">
+                    <label for="ah-input" class="skill-label">Animal Handling (Wis)</label>
                 </div>
                 <div id="arcana-box" class="rows throw-spacing">
                     <input type="radio" id = "arcana-skill" class="skills-throws-radio">
-                    <input type="text" id="arcana-input" class="skill-input"></input>
-                    <label for="arcana-input" class="skill-label">Arcana</label>
+                    <input type="text" id="arcana-input" class="skill-input intelligence">
+                    <label for="arcana-input" class="skill-label">Arcana (Int)</label>
                 </div>
                 <div id="arcana-box" class="rows throw-spacing">
                     <input type="radio" id = "athletics-skill" class="skills-throws-radio">
-                    <input type="text" id="athletics-input" class="skill-input"></input>
-                    <label for="athletics-input" class="skill-label">Athletics</label>
+                    <input type="text" id="athletics-input" class="skill-input strength">
+                    <label for="athletics-input" class="skill-label">Athletics (Str)</label>
                 </div>
                 <div id="arcana-box" class="rows throw-spacing">
                     <input type="radio" id = "deception-skill" class="skills-throws-radio">
-                    <input type="text" id="deception-input" class="skill-input"></input>
-                    <label for="deception-input" class="skill-label">Deception</label>
+                    <input type="text" id="deception-input" class="skill-input charisma">
+                    <label for="deception-input" class="skill-label">Deception (Cha)</label>
                 </div>
                 <div id="history-box" class="rows throw-spacing">
                     <input type="radio" id = "history-skill" class="skills-throws-radio">
-                    <input type="text" id="history-input" class="skill-input"></input>
-                    <label for="history-input" class="skill-label">History</label>
+                    <input type="text" id="history-input" class="skill-input intelligence">
+                    <label for="history-input" class="skill-label">History (Int)</label>
                 </div>
                 <div id="insight-box" class="rows throw-spacing">
                     <input type="radio" id = "insight-skill" class="skills-throws-radio">
-                    <input type="text" id="insight-input" class="skill-input"></input>
-                    <label for="insight-input" class="skill-label">Insight</label>
+                    <input type="text" id="insight-input" class="skill-input wisdom">
+                    <label for="insight-input" class="skill-label">Insight (Wis)</label>
                 </div>
                 <div id="intimidation-box" class="rows throw-spacing">
                     <input type="radio" id = "intimidation-skill" class="skills-throws-radio">
-                    <input type="text" id="intimidation-input" class="skill-input"></input>
-                    <label for="intimidation-input" class="skill-label">Intimidation</label>
+                    <input type="text" id="intimidation-input" class="skill-input charisma">
+                    <label for="intimidation-input" class="skill-label">Intimidation (Cha)</label>
                 </div>
                 <div id="intimidation-box" class="rows throw-spacing">
                     <input type="radio" id = "investigation-skill" class="skills-throws-radio">
-                    <input type="text" id="investigation-input" class="skill-input"></input>
-                    <label for="investigation-input" class="skill-label">Investigation</label>
+                    <input type="text" id="investigation-input" class="skill-input intelligence">
+                    <label for="investigation-input" class="skill-label">Investigation (Int)</label>
                 </div>
                 <div id="intimidation-box" class="rows throw-spacing">
                     <input type="radio" id = "medicine-skill" class="skills-throws-radio">
-                    <input type="text" id="medicine-input" class="skill-input"></input>
-                    <label for="medicine-input" class="skill-label">Medicine</label>
+                    <input type="text" id="medicine-input" class="skill-input wisdom">
+                    <label for="medicine-input" class="skill-label">Medicine (Wis)</label>
                 </div>
                 <div id="nature-box" class="rows throw-spacing">
                     <input type="radio" id = "nature-skill" class="skills-throws-radio">
-                    <input type="text" id="nature-input" class="skill-input"></input>
-                    <label for="nature-input" class="skill-label">Nature</label>
+                    <input type="text" id="nature-input" class="skill-input intelligence">
+                    <label for="nature-input" class="skill-label">Nature (Int)</label>
                 </div>
                 <div id="perception-box" class="rows throw-spacing">
                     <input type="radio" id = "perception-skill" class="skills-throws-radio">
-                    <input type="text" id="perception-input" class="skill-input"></input>
-                    <label for="nature-input" class="skill-label">Perception</label>
+                    <input type="text" id="perception-input" class="skill-input wisdom">
+                    <label for="nature-input" class="skill-label">Perception (Wis)</label>
                 </div>
                 <div id="performance-box" class="rows throw-spacing">
                     <input type="radio" id = "performance-skill" class="skills-throws-radio">
-                    <input type="text" id="performance-input" class="skill-input"></input>
-                    <label for="performance-input" class="skill-label">Performance</label>
-                </div>
-                <div id="performance-box" class="rows throw-spacing">
-                    <input type="radio" id = "performance-skill" class="skills-throws-radio">
-                    <input type="text" id="performance-input" class="skill-input"></input>
-                    <label for="performance-input" class="skill-label">Performance</label>
+                    <input type="text" id="performance-input" class="skill-input charisma">
+                    <label for="performance-input" class="skill-label">Performance (Cha)</label>
                 </div>
                 <div id="persuasion-box" class="rows throw-spacing">
                     <input type="radio" id = "persuasion-skill" class="skills-throws-radio">
-                    <input type="text" id="persuasion-input" class="skill-input"></input>
-                    <label for="persuasion-input" class="skill-label">Persuasion</label>
+                    <input type="text" id="persuasion-input" class="skill-input charisma">
+                    <label for="persuasion-input" class="skill-label">Persuasion (Cha)</label>
                 </div>
                 <div id="religion-box" class="rows throw-spacing">
                     <input type="radio" id = "religion-skill" class="skills-throws-radio">
-                    <input type="text" id="religion-input" class="skill-input"></input>
-                    <label for="religion-input" class="skill-label">Religion</label>
+                    <input type="text" id="religion-input" class="skill-input intelligence">
+                    <label for="religion-input" class="skill-label">Religion (Int)</label>
                 </div>
                 <div id="soh-box" class="rows throw-spacing">
                     <input type="radio" id = "soh-skill" class="skills-throws-radio">
-                    <input type="text" id="soh-input" class="skill-input"></input>
-                    <label for="soh-input" class="skill-label">Sleight of Hand</label>
+                    <input type="text" id="soh-input" class="skill-input dexterity">
+                    <label for="soh-input" class="skill-label">Sleight of Hand (Dex)</label>
                 </div>
                 <div id="stealth-box" class="rows throw-spacing">
                     <input type="radio" id = "stealth-skill" class="skills-throws-radio">
-                    <input type="text" id="soh-input" class="skill-input"></input>
-                    <label for="stealth-input" class="skill-label">Sleight of Hand</label>
+                    <input type="text" id="Stealth-input" class="skill-input dexterity">
+                    <label for="stealth-input" class="skill-label">Stealth (Dex)</label>
                 </div>
                 <div id="survival-box" class="rows throw-spacing">
                     <input type="radio" id = "survival-skill" class="skills-throws-radio">
-                    <input type="text" id="survival-input" class="skill-input"></input>
-                    <label for="survival-input" class="skill-label">Survival</label>
+                    <input type="text" id="survival-input" class="skill-input wisdom">
+                    <label for="survival-input" class="skill-label">Survival (Wis)</label>
                 </div>
                 <label class="skills-throws-label">Skills</label>
             </div>
         </div>
+        <div id="ac-and-speed" class="columns">
+            <div id="ais-container" class="rows">
+                <div id="ac" class="columns ais-divs">
+                    <input type="text" id="ac-input" class="ais-spacing"></input>
+                    <label for="ac-input" id="ac-label" class="ais-label">Armor</label>
+                </div>
+                <div id="initiative" class="columns ais-divs">
+                    <input type="text" id="initiative-input" class="ais-spacing"></input>
+                    <label for="initiative-input" id="initiative-label" class="ais-label">Initiative</label>
+                </div>
+                <div id="speed" class="columns ais-divs">
+                    <input type="text" id="speed-input" class="ais-spacing"></input>
+                    <label for="speed-input" id="speed-label" class="ais-label">Speed</label>
+                </div>
+            </div>
+            <div id="hit-points" class="columns">
+                <div id="points-max" class="rows">
+                    <label id="hit-points-label">Hit Point Maximum</label>
+                    <input id="hp-input" type="text">
+                </div>
+                <div id="current-points" class="colums">
+                    <input type="text" id="current-hp">
+                    <label for="current-hp" id="current-hp-label">Current Hitpoints</label>
+                </div>
+            </div>
+        </div>
+		<div id="background-details" class="columns">
+			<div id="personality" class="columns">
+				<textarea id="personality-text"></textarea>
+				<label for="personality-text">Personality</label>
+			</div>
+			<div id="ideals" class="columns">
+				<textarea id="ideals-text"></textarea>
+				<label for="ideals-text">Ideals</label>
+			</div>
+			<div id="bonds" class="columns">
+				<textarea id="bonds-text"></textarea>
+				<label for="bonds-text">Bonds</label>
+			</div>
+			<div id="flaws" class="columns">
+				<textarea id="flaws-text"></textarea>
+				<label for="flaws-text">Flaws</label>
+			</div>
+			<div id="features" class="columns">
+				<textarea id="features-text"></textarea>
+				<label for="features-text">Features and Traits</label>
+			</div>
+		</div>
     </div>
+	<div id = "passive">
+		<input type="text" id="passive-wisdom">
+		<label for="passive-wisdom">Passive Wisdom (Perception)</label>
+	</div>
+	<!--
+	<div id = "profsandlangs" class="columns">
+		<input type="text" id="proflangtext">
+		<label for="proflangtext">Other Proficencies and Languages</label>
+	</div>
+	-->
 </body>
 
 <script>
 const scores = document.querySelectorAll(".score");
 const inspiration = document.querySelector("#inspired");
-let checked;
+const radios = document.querySelectorAll('input[type="radio"]')
+const level = document.querySelector('#level');
+const prof = document.querySelector("#prof-bonus");
+const save = document.querySelector("#save");
+
 window.addEventListener("load", (event) => {
     console.log(scores);
     console.log(inspiration);
+	console.log(radios);
+    console.log(level);
 });
 
 scores.forEach((el) => {
@@ -419,15 +547,52 @@ scores.forEach((el) => {
         const modifier = field.target.parentNode.children[1];
         const score = field.target.value;
         modifier.value = Math.floor((score - 10) /2);
+        const modList = document.querySelectorAll(`.${modifier.classList[1]}`);
+        for(let i of modList){
+            if(typeof parseInt(i.value) !== 'number'){
+                i.value = modifier.value;
+            }
+            else{
+                i.value = +i.value + parseInt(modifier.value);
+            }
+        }
     })
 })
 
-inspiration.addEventListener('click', (state) => {
-    if(checked){
-        inspiration.checked = false;
-        checked = false;
-        return
-    }
-    checked = true;
-});
+for(let radio of radios){
+	radio.setAttribute("data-precheck", "false");
+	radio.addEventListener('click', (state) => {
+        const stat = state.target.parentNode.children[1];
+		if(state.target.dataset.precheck == "true"){
+			state.target.checked = false;
+			state.target.dataset.precheck = false;
+            stat.value -= +prof.value;
+			return;
+		}
+		state.target.dataset.precheck="true";
+		state.target.checked = true;
+        stat.value = +stat.value + +prof.value;
+	});
+}
+
+level.addEventListener('change', (value) =>{
+    prof.value = 1 + Math.ceil((value.target.value/4));
+})
+
+save.addEventListener('click', (data) => {
+    let elements = {
+        inputs: {},
+        radios: {}
+    };
+    const docInputs = document.querySelectorAll("input[type='text'], textarea");
+    const radioInputs = document.querySelectorAll("input[type='radio']");
+    docInputs.forEach((element) => {
+        elements['inputs'][element.id] = element.value;
+    })
+    radioInputs.forEach((element) => {
+        elements['radios'][element.id] = element.checked;
+    })
+    console.log(elements);
+})
+
 </script>

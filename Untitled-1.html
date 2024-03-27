@@ -241,6 +241,7 @@
     <div id="save-and-load" class="rows">
         <input type="button" id="save" value="Save">
         <input type="button" id="load" value="Load">
+		<input type="button" id="clear" value="Clear">
     </div>
     <div id="basic-facts">
         <div id="character-name">
@@ -534,6 +535,12 @@ const radios = document.querySelectorAll('input[type="radio"]')
 const level = document.querySelector('#level');
 const prof = document.querySelector("#prof-bonus");
 const save = document.querySelector("#save");
+const load = document.querySelector("#load");
+const clear = document.querySelector("#clear");
+let elements = {
+	inputs: {},
+	radios: {}
+};
 
 window.addEventListener("load", (event) => {
     console.log(scores);
@@ -547,7 +554,7 @@ scores.forEach((el) => {
         const modifier = field.target.parentNode.children[1];
         const score = field.target.value;
         modifier.value = Math.floor((score - 10) /2);
-        const modList = document.querySelectorAll(`.${modifier.classList[1]}`);
+        const modList = Array.from(document.querySelectorAll(`.${modifier.classList[1]}`)).slice(1);
         for(let i of modList){
             if(typeof parseInt(i.value) !== 'number'){
                 i.value = modifier.value;
@@ -580,10 +587,6 @@ level.addEventListener('change', (value) =>{
 })
 
 save.addEventListener('click', (data) => {
-    let elements = {
-        inputs: {},
-        radios: {}
-    };
     const docInputs = document.querySelectorAll("input[type='text'], textarea");
     const radioInputs = document.querySelectorAll("input[type='radio']");
     docInputs.forEach((element) => {
@@ -593,6 +596,27 @@ save.addEventListener('click', (data) => {
         elements['radios'][element.id] = element.checked;
     })
     console.log(elements);
+})
+
+load.addEventListener('click', (data) => {
+	for(let i in elements['inputs']){
+		document.querySelector(`#${i}`).value = elements['inputs'][i];
+	}
+	for(let i in elements['radios']){
+		console.log(document.querySelector(`#${i}`).checked = elements['radios'][i]);
+	}
+})
+
+clear.addEventListener('click', (data) => {
+	const docInputs = document.querySelectorAll("input[type='text'], textarea");
+	const radioInputs = document.querySelectorAll("input[type='radio']");
+	docInputs.forEach((element) => {
+		element.value = "";
+	})
+	radioInputs.forEach((element) => {
+		element.checked = false;
+		element.dataset.precheck = "false";
+	})
 })
 
 </script>
